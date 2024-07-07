@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Toutes les recettes{% endblock %}
+{% block title %}Hello CategoryController!{% endblock %}
 
 {% block body %}
 <style>
@@ -11,13 +11,10 @@
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
 
-    je suis ici
+    This friendly message is coming from:
     <ul>
-        <li>Your controller at <code>C:/wamp64/www/symfony/demo_4/src/Controller/RecipeController.php</code></li>
-        <li>
-            <a href="{{ url('recipe.show', {id: 32, slug: 'pate-bolognaise'}) }}">Pates bolognaise</a>
-            
-        </li>
+        <li>Your controller at <code>/var/www/SymfonyDemo/src/Controller/Admin/CategoryController.php</code></li>
+        <li>Your template at <code>/var/www/SymfonyDemo/templates/admin/category/index.html.twig</code></li>
     </ul>
 </div>
 {% endblock %}
