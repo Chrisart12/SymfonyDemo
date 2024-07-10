@@ -2,16 +2,20 @@
 
 namespace App\Entity;
 
+use Vich\UploadableField;
 use App\Validator\BanWord;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RecipeRepository;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 #[UniqueEntity('title')]
 #[UniqueEntity('slug') ]
+#[Vich\Uploadable]
 class Recipe
 {
     #[ORM\Id]
@@ -44,6 +48,16 @@ class Recipe
     #[Assert\LessThan(value: 200)]
     #[ORM\Column(nullable: true)]
     private ?int $duration = null;
+
+    #[ORM\ManyToOne(inversedBy: 'recipes')]
+    private ?Category $category = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $recipeFilename = null;
+
+    #[Vich\UploadableField(mapping: 'recipes', fileNameProperty: 'recipeFilename')] //UploadableField à un constructeur avec des propièté mapping: indiqué dans vich_uploader.yaml, filenameProperty: la propriété du fichier dans la classe
+    #[Assert\Image()]
+    private ?File $recipeFile = null;
 
     /**
      * Permet de gérer les dates automatiquement
@@ -130,4 +144,41 @@ class Recipe
 
         return $this;
     }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getRecipeFilename(): ?string
+    {
+        return $this->recipeFilename;
+    }
+
+    public function setRecipeFilename(?string $recipeFilename): static
+    {
+        $this->recipeFilename = $recipeFilename;
+
+        return $this;
+    }
+
+    public function getRecipeFile(): ?File
+    {
+        return $this->recipeFile;
+    }
+
+    public function setRecipeFile(?File $recipeFile = null): static
+    {
+        $this->recipeFile = $recipeFile;
+
+        return $this;
+    }
+    
 }

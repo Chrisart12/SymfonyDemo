@@ -18,23 +18,24 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('subject', TextType::class, [
-                'label' => 'Sujet',
+                'label' => 'subject',
             ])
             ->add('service', ChoiceType::class, [
                 'choices' => [
-                    'compta' => 'compta@gmail.com',
-                    'gestion' => 'gestion@gmail.com',
+                    'counted' => 'compta@gmail.com',
+                    'management' => 'gestion@gmail.com',
                     'direction' => 'direction@gmail.com',
-                ]
+                ],
+                'label' => 'office',
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Email',
+                'label' => 'email',
             ])
             ->add('content', TextareaType::class, [
-                'label' => 'Message',
+                'label' => 'message',
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Envoyer'
+                'label' => 'envoyer'
             ])
         ;
     }

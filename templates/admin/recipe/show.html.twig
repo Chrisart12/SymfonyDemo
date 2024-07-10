@@ -9,8 +9,8 @@
 		<h4 class="">Détail recette</h4>
 
 		<div class="card" style="width: 18rem;">
-			{# <img class="card-img-top" src="/recettes/images/{{ recipe.filename }}" alt="Card image cap"> #}
-			{# <img class="card-img-top" src="{{ vich_uploader_asset(recipe, 'filenameFile') }}" alt="Card image cap"> #}
+			{# <img class="card-img-top" src="/recipes/images/{{ recipe.recipeFilename }}" alt="Card image cap"> #}
+			<img class="card-img-top" src="{{ vich_uploader_asset(recipe, 'recipeFile') }}" alt="Card image cap">
 			<div class="card-body">
 				<h5 class="card-title">{{ recipe.title|capitalize  }}</h5>
 				<small>{{ recipe.updatedAt |date('d/m/Y') }}</small>

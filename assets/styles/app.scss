@@ -1,2 +1,6 @@
-@import "scss/utils/variables";
-@import "scss/pages/recipe";
+@import "~bootstrap/scss/bootstrap";// Importation de bootstrap
+
+@import "sass/utils/variables";
+@import "sass/pages/recipe";
+
+@import "sass/components/lang/select";

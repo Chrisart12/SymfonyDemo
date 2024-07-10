@@ -1,9 +1,12 @@
 body {
-    background-color: $info-border;
-    // background-color: red;
+    background-color: $success-color;
 }
 
 .container-card-link {
     display: flex;
     justify-content: space-between;
+}
+
+.ml_5 {
+    margin-right: 30px;
 }

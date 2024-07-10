@@ -11,16 +11,27 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Intl\Locales;
+
 
 #[Route('admin/recipe', name: 'admin.recipe.')]
 class RecipeController extends AbstractController
 {
     
     #[Route('/', name: 'index')]
-    public function index(Request $request, RecipeRepository $recipeRepository): Response
+    public function index(Request $request, RecipeRepository $recipeRepository, TranslatorInterface $translatorInterface): Response
     {
-        $recipes = $recipeRepository->findAll();
+        $request->setLocale('en');
+        
+        // dd($translatorInterface->trans('add recipe'));
+        $nberPerPage = $this->getParameter('pagination'); // Configuration dans service yaml
+        
+        $page = $request->query->getInt('page', 1);
+
+        $recipes = $recipeRepository->paginateRecipes($page, $nberPerPage);
+        // $recipes = $recipeRepository->findWithDurationLowerThan(50);
         // dd($recipeRepository->findAll());
         return $this->render('admin/recipe/index.html.twig', [
             'recipes' => $recipes,
@@ -82,15 +93,17 @@ class RecipeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // dd($form->get('recipeFilename'));
         
             $recipe->setUpdatedAt(new DateTimeImmutable());
 
             // /** @var UploadedFile $file */
-            // $file = $form->get('filename')->getData();
+            // $file = $form->get('recipeFilename')->getData();
             // $filename = 'recipe_' .time() . '_' . $recipe->getId() . '.' . $file->getClientOriginalExtension();
 
-            // $file->move($this->getParameter('kernel.project_dir') . '/public/recettes/images', $filename);
-            // $recipe->setFilename($filename);
+            // $file->move($this->getParameter('kernel.project_dir') . '/public/recipes/images', $filename);
+            // $recipe->setRecipeFilename($filename);
         
             $entityManagerInterface->flush();
 
