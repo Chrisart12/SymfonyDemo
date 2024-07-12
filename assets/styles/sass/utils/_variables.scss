@@ -1,14 +1,143 @@
+
+// Body
+$body-bg: #f5f8fa;
+
+// Borders
+$laravel-border-color: darken($body-bg, 10%);
+$list-group-border: $laravel-border-color;
+$navbar-default-border: $laravel-border-color;
+$panel-default-border: $laravel-border-color;
+$panel-inner-border: $laravel-border-color;
+
+// Brands
+$brand-primary: #3097D1;
+$brand-info: #8eb4cb;
+$brand-success: #2ab27b;
+$brand-warning: #cbb956;
+$brand-danger: #bf5329;
+
+// Typography
+// $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-family-sans-serif: "Raleway", sans-serif;
+// $font-size-base: 14px;
+$line-height-base: 1.6;
+$text-color: #424242;
+
+// Navbar
+$navbar-default-bg: #fff;
+
+// Buttons
+$btn-default-color: $text-color;
+
+// Inputs
+$input-border: lighten($text-color, 40%);
+$input-border-focus: lighten($brand-primary, 25%);
+$input-color-placeholder: lighten($text-color, 30%);
+
+// Panels
+$panel-default-heading-bg: #fff;
+
+
+/*
+|------------------------------------------------
+| Custom variables
+|
+*/
+// $borderRadius: 20px;
+$borderRadius: 10px;
+$background: #e3f2fd;
+
+$blackColor: #222222;
+$blueColor: #6200ea;
+// $pinkColor: #ec407a;
+$pinkColor: rgba(156,39,176,1);
+$pink_color_2: #9c27b0;
+$pinkLight: #fce4ec;
+$btnColor: #FFFFFF;
+$btnBorderRadius: 5px;
+$smallBorderRadius: 5px;
+$btnHoverBg: #2196f3;
+$btnHoverColor: #2196f3;
+$background_hover:  #4fc3f7;
+
+$boxShadowColor: #424242;
+$discret: #757575;
+$panelHeadingGg: #eeeeee;
+$borderColor : #d3e0e9;
+$checkboxhoverBg: #2195f2;
+$disabled_background: #bdbdbd;
+$header_background: rgba(188, 207, 219, 0.986);
+$header_bacground_color:  #bdbdbd;
+
+$orange_color: #f57f17;
+$purple_color: #5e35b1;
+$light_purple: #b388ff;
+$light_green: #84ffff;
+$red_color: #dd2c00;
+$gif_background: #f1f2f3;
+$menu_background: #bbcdd9;
+
+$input_border_color: #A8A8A8;
+$input_border_radius: 5px;
+$esa_green: #43a047;
+
+$chrisart_body_background_color: #1C313A;
+// $chrisart_logo_color: #2EC0D5;
+$chrisart_logo_color: #12FFFF;
+$chrisart_content_background_color: #455A64;
+
+$chrisart_separation: #2ebfd5;
+$info_color: #03a9f4;
+$chrisart_form_background: #6A828D;
+$chrisart_form_input_border: #D1D5DB;
+
 // Flash message
 $success-background:#DAFBE1;
 $success-color:#155724;
 $success-border:#A0E5B2;
+
 $warning-background:#FFF8C5;
 $warning-color:#856404;
 $warning-border:#EED888;
+
 $error-background:#FFEBE9;
 $error-color:#7F2E36;
 $error-border:#FFC0C0;
+
 $info-background:#DDF4FF;
 $info-color:#0C5460;
 $info-border:#A6D9FF;
+
+// Grey
+$grey-1: #fafafa;
+$grey-2: #f5f5f5;
+$grey-3: #eeeeee;
+$grey-4: #e0e0e0;
+$grey-5: #bdbdbd;
+$grey-10: #757575;
+
+// Color
+$blue-4: #64b5f6;
+$blue-5: #2196f3;
+$blue-6: #273493;
+$blue-7: #03a9f4;
+
+// Green
+$green-5: #4caf50;
+
+// Orange
 $orange: #F5A012;
+$orange-5: #ff9800;
+
+$border-radius-xxs: 5px;
+$border-radius-xs: 10px;
+$border-radius-sm: 15px;
+$border-radius-m: 20px;
+
+// #EEEEEE
+$color-white: #ffffff;
+
+
+
+
+

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}categories{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+
+{% include ('partials/flashes.html.twig')  %}
+
+    <a class="btn btn-primary" href="{{ path('admin.category.create') }}" role="button">Ajouter une catégorie</a>
+    <h1> les categories</h1>
+    <div>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    {# <th scope="col">Nom</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Date de création</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Action</th> #}
+
+                    <th scope="col">{{ knp_pagination_sortable(categories, 'Nom', 'c.name') }}</th>
+                    {# <th scope="col"> {{ knp_pagination_sortable(categories, 'Slug', 'c.slug') }}</th> #}
+                    <th scope="col">{{ knp_pagination_sortable(categories, 'Date de création', 'c.createdAt') }}</th>
+                    <th scope="col"> {{ knp_pagination_sortable(categories, 'Total', 'c.count') }}</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                    <tr>
+                      {# {{ category }} #}
+                        {# <td>{{ category.category.name}}</td>
+                        <td>{{ category.category.slug }}</td>
+                        <td>{{ category.category.createdAt |date('d/m/Y') }}</td>
+                        <td>{{ category.total }}</td> #}
+                        <td>{{ category.name}}</td>
+                        {# <td>{{ category.slug }}</td> #}
+                        <td>{{ category.createdAt |date('d/m/Y') }}</td>
+                        <td>{{ category.count }}</td>
+                        <th> 
+                            <div style="display: flex; justify-content: space-between;">
+                                <div> 
+                                    <a class="btn btn-primary" href="{{ path('admin.category.show', {id: category.id} )}}" class="list-group-item list-group-item-action" aria-current="true">Détail </a>
+                                </div>
+                                <div>
+                                <a class="btn btn-warning" href="{{ path('admin.category.edit', {id: category.id}) }}" role="button">Editer</a>
+                                </div>
+                                <div>
+                                <form action="{{ path('admin.category.delete', {id: category.id}) }}" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE"/>
+                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                </form>
+                                </div>
+                            </div>
+                            
+                        </th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {{ knp_pagination_render(categories) }}
+    <div>
+    
+</div>
+{% endblock %}

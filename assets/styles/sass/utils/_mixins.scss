@@ -1,0 +1,120 @@
+// @mixin headerBorder {
+//     border-bottom: 1px solid $borderColor;
+// }
+
+// @mixin borderInput {
+//     border: solid $borderColor 2px;
+// }
+
+// @mixin imageShadow {
+//     box-shadow: 1px 6px 8px $textColorBlackOne;
+
+// }
+// @mixin textShadow {
+//     text-shadow: 1px 2px 4px $textColorBlackOne;
+// }
+
+// @mixin shadowList {
+//     box-shadow: 1px 2px 5px $textColorBlackOne;
+// }
+
+@mixin boxShadow {
+    box-shadow: 1px 2px 5px $boxShadowColor;
+}
+
+@mixin leftBoxShadow {
+    // -webkit-box-shadow: 3px 1px 4px -2px $chrisart_logo_color;
+    // box-shadow: 3px 1px 4px -2px $chrisart_logo_color;
+
+    -webkit-box-shadow: 1px 1px 3px -1px $chrisart_logo_color;
+    box-shadow: 1px 1px 3px -1px $chrisart_logo_color;
+}
+
+@mixin topBoxShadow {
+    -webkit-box-shadow: -1px 1px 3px 1px $chrisart_logo_color;
+    box-shadow: -1px 1px 3px 1px $chrisart_logo_color;
+}
+
+@mixin bottomBoxShadow {
+    // -webkit-box-shadow: 0 1px 8px -1px $chrisart_logo_color;
+    // box-shadow: 0 1px 8px -1px $chrisart_logo_color;
+
+    -webkit-box-shadow: 0 -1px 5px -1px $chrisart_logo_color;
+    box-shadow: 0 -1px 5px -1px $chrisart_logo_color;
+}
+
+@mixin subMenuBoxShadow {
+    -webkit-box-shadow: 3px 2px 8px -4px #6A828D;
+    box-shadow: 3px 2px 8px -4px #6A828D;
+}
+
+
+
+
+
+/*
+|----------------------------------------------- 
+| Les medias queries
+*/
+@mixin iPadsLandscape {
+    @media screen and (max-width: map-get($myBreakpoints, iPadsLandscape)){
+        @content;
+    }
+}
+
+@mixin iPadsPortrait {
+    @media screen and (max-width: map-get($myBreakpoints, iPadsPortrait)){
+        @content;
+    }
+}
+
+@mixin SmartphonesLandscape {
+    @media screen and (max-width: map-get($myBreakpoints, SmartphonesLandscape)){
+        @content;
+    }
+}
+
+@mixin BigSmartphonesPortrait {
+    @media screen and (max-width: map-get($myBreakpoints, BigSmartphonesPortrait)){
+        @content;
+    }
+}
+
+@mixin SmartphonesPortrait {
+    @media screen and (max-width: map-get($myBreakpoints, SmartphonesPortrait)){
+        @content;
+    }
+}
+
+@mixin desktopMax {
+    @media screen and (max-width: map-get($myBreakpoints, desktopMax)){
+        @content;
+    }
+}
+
+@mixin smallDesktop {
+    @media screen and (max-width: map-get($myBreakpoints, smallDesktop)){
+        @content;
+    }
+}
+
+@mixin xsDesktop {
+    @media screen and (max-width: map-get($myBreakpoints, xsDesktop)){
+        @content;
+    }
+}
+
+@mixin borderBtn {
+    border: 2px solid $pink_color_2;
+}
+
+@mixin hoverBtn {
+    &:hover {
+        background-color: $pinkColor;
+        color: white;
+    }
+}
+
+
+
+

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une catégorie {% endblock %}
+
+
+{% block body %}
+
+	<div class="example-wrapper">
+
+		{# <h1>{{ recipe.title|capitalize }}</h1> #}
+        
+		{{ form(categoryForm) }}
+	</div>
+{% endblock %}

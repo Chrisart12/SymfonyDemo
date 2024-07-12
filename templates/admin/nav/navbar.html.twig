@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">Navbar</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link {{ app.current_route == 'home' ? 'active' : '' }}" aria-current="page" href="{{ url('home') }}">{{ 'home' | trans }}</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link {{ app.current_route starts with 'admin.recipe.' ? 'active' : '' }}" href="{{ url('admin.recipe.index') }}">{{ 'recipe' | trans }}</a>
+				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link {{ app.current_route starts with 'admin.category.' ? 'active' : '' }}" href="{{ url('admin.category.index') }}">{{ 'categories' | trans }}</a>
+				</li>
+
+				<div class="nav-item">
+					
+					{# <a class="nav-link {{ app.current_route starts with 'contact.' ? 'active' : '' }}" href="{{ url('app_register') }}">Contact</a> #}
+				</div>
+			</ul>
+			<form class="d-flex" role="search">
+					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success mr_5" type="submit">Search</button>
+			</form>
+
+			<ul class="navbar-nav mb-2 mb-lg-0 ml-1">
+				<select id="country_lang" name="country_lang" data-placeholder="Select a country" data-dynamic-select>
+					<option value="fr" data-img="{{ asset('images/fr.png') }}" {{ app.request.get('_locale') == 'fr' ? 'selected' : '' }}>Fr</option>
+					<option value="en" data-img="{{ asset('images/en.png') }}" {{ app.request.get('_locale') == 'en' ? 'selected' : '' }} >En</option>
+				</select>
+			</ul>
+
+			{% if app.user %}
+				<ul class="navbar-nav mb-2 mb-lg-0 ml_3">
+					<li class="nav-item dropdown mr_7">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							{{ app.user.firstname ?? '' }}
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="{ url('home') }}">{{ 'profile' | trans }}</a>
+							</li>
+							<li><hr class="dropdown-divider"></li>
+							<li>
+								<a class="dropdown-item" href="{{ url('app_logout') }}">{{ 'logout' | trans }}</a>
+							</li>
+							
+						</ul>
+					</li>
+				</ul>
+			{% else %}
+				<ul class="navbar-nav mb-2 mb-lg-0 ml_3">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url('app_login') }}">{{ 'login' | trans }}</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url('app_register') }}">{{ 'register' | trans }}</a>
+					</li>
+				</ul>
+			{% endif %}
+			
+
+			
+		</div>
+	</div>
+</nav>

@@ -2,9 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
 use App\Entity\Recipe;
 use DateTimeImmutable;
 use App\Form\RecipeType;
+use Symfony\Component\Intl\Locales;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,17 +15,37 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Intl\Locales;
-
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('admin/recipe', name: 'admin.recipe.')]
+#[IsGranted('ROLE_ADMIN')]
 class RecipeController extends AbstractController
 {
     
     #[Route('/', name: 'index')]
-    public function index(Request $request, RecipeRepository $recipeRepository, TranslatorInterface $translatorInterface): Response
+    public function index(
+            Request $request, 
+            RecipeRepository $recipeRepository, 
+            TranslatorInterface $translatorInterface, 
+            UserPasswordHasherInterface $userPasswordHasherInterface,
+            EntityManagerInterface $entityManagerInterface 
+        ): Response
     {
-        $request->setLocale('en');
+
+        // $user = new User();
+        // $user->setEmail('issa@gmail.com')
+        //         ->setFirstname('issa')
+        //         ->setLastname('issifou')
+        //         ->setPassword($userPasswordHasherInterface->hashPassword($user, 'bonheur'))
+        //         ->setRoles([])
+        //         ;
+
+        // $entityManagerInterface->persist($user);
+        // $entityManagerInterface->flush();
+
+    
+        $this->denyAccessUnlessGranted('ROLE_USER');
         
         // dd($translatorInterface->trans('add recipe'));
         $nberPerPage = $this->getParameter('pagination'); // Configuration dans service yaml

@@ -1,6 +1,9 @@
 @import "~bootstrap/scss/bootstrap";// Importation de bootstrap
 
 @import "sass/utils/variables";
+@import "sass/utils/maps";
+@import "sass/utils/mixins";
+@import "sass/utils/various";
 @import "sass/pages/recipe";
 
 @import "sass/components/lang/select";

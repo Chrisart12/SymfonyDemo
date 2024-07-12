@@ -7,9 +7,17 @@ counted: Compta
 direction: Direction
 email: Mail
 envoyer: Envoyer
+firstname: Prénom
 home: Accueil
+lastname: Nom
+login: Se connecter
+logout: Déconnexion
 management: Gestion
 message: Message
 office: Service
+plainPassword: Mot de passe
+profile: Profil
 recipe: Recette
+register: S'inscrire
+save: Enregistrer
 subject: Sujet

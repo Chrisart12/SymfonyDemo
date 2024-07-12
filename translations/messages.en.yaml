@@ -7,9 +7,17 @@ counted: Counted
 direction: Direction
 email: Email
 envoyer: Send
+firstname: Firstname
 home: Home
+lastname: Lastname
+login: Login
+logout: Logout
 management: Management
 message: Message
 office: Office
+plainPassword: Password
+profile: Profile
 recipe: Recipe
+register: Register
+save: Save
 subject: Subject

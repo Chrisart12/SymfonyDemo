@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recette : {{ recipe.title }}  {% endblock %}
+
+
+{% block body %}
+
+	<div class="example-wrapper">
+		<h4 class="">Détail recette</h4>
+
+		<div class="card" style="width: 18rem;">
+			{# <img class="card-img-top" src="/recipes/images/{{ recipe.recipeFilename }}" alt="Card image cap"> #}
+			<img class="card-img-top" src="{{ vich_uploader_asset(recipe, 'recipeFile') }}" alt="Card image cap">
+			<div class="card-body">
+				<h5 class="card-title">{{ recipe.title|capitalize  }}</h5>
+				<small>{{ recipe.updatedAt |date('d/m/Y') }}</small>
+				<p class="card-text">{{ recipe.content | nl2br  }}</p>
+			</div>
+			
+			<div class="card-body">
+				<div class="container-card-link">
+					<div>
+						{# <a class="btn btn-primary" href="{{ path('admin.recipe.edit', {id: recipe.id}) }}" role="button">Editer</a> #}
+					</div>
+					<div>
+						{# <form action="{{ path('admin.recipe.delete', {id: recipe.id}) }}" method="POST">
+							<input type="hidden" name="_method" value="DELETE"/>
+							<button type="submit" class="btn btn-danger">Supprimer</button>
+						</form> #}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

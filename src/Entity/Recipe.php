@@ -2,15 +2,18 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use Vich\UploadableField;
 use App\Validator\BanWord;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RecipeRepository;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 #[UniqueEntity('title')]
@@ -59,6 +62,21 @@ class Recipe
     #[Assert\Image()]
     private ?File $recipeFile = null;
 
+    #[ORM\ManyToOne(inversedBy: 'recipes')]
+    private ?User $user = null;
+
+    // /**
+    //  * @var Collection<int, User>
+    //  */
+    // #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'recipeLikes')]
+    // private Collection $userLikes;
+
+    /**
+     * @var Collection<int, RecipeLike>
+     */
+    #[ORM\OneToMany(targetEntity: RecipeLike::class, mappedBy: 'recipe')]
+    private Collection $likes;
+
     /**
      * Permet de gérer les dates automatiquement
      */
@@ -66,6 +84,8 @@ class Recipe
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
+        // $this->userLikes = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -179,6 +199,93 @@ class Recipe
         $this->recipeFile = $recipeFile;
 
         return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    // /**
+    //  * @return Collection<int, User>
+    //  */
+    // public function getUserLikes(): Collection
+    // {
+    //     return $this->userLikes;
+    // }
+
+    // public function addUserLike(User $userLike): static
+    // {
+    //     if (!$this->userLikes->contains($userLike)) {
+    //         $this->userLikes->add($userLike);
+    //         $userLike->addRecipeLike($this);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeUserLike(User $userLike): static
+    // {
+    //     if ($this->userLikes->removeElement($userLike)) {
+    //         $userLike->removeRecipeLike($this);
+    //     }
+
+    //     return $this;
+    // }
+
+    /**
+     * @return Collection<int, RecipeLike>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(RecipeLike $like): static
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+            $like->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(RecipeLike $like): static
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getRecipe() === $this) {
+                $like->setRecipe(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Permet de savoir si ce recipe a été aimé par un utilisateur
+     *
+     * @param User $user
+     * @return boolean
+     */
+    public function isLikeByUser(User $user): bool
+    {
+        
+        foreach ($this->likes as $like) {
+            if ($like->getUser() == $user) {
+                return true;
+            }
+        }
+
+        return false;
     }
     
 }

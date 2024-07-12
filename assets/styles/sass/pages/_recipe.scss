@@ -1,5 +1,5 @@
 body {
-    background-color: $success-color;
+    background-color: $white;
 }
 
 .container-card-link {
@@ -7,6 +7,16 @@ body {
     justify-content: space-between;
 }
 
-.ml_5 {
-    margin-right: 30px;
+
+.grid-recipe {
+    // max-width: 1300px;
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    grid-gap: 20px;
+}
+
+.recipe-item{
+    width: 300px;
 }
